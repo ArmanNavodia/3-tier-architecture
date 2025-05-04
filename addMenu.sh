@@ -1,0 +1,5 @@
+ #!bin/bash
+echo "db.pizzas.insertOne({ name: \"farmhouse\", description: \"This is pizza\", price: 400, image: \"https://st2.depositphotos.com/1177973/10972/i/950/depositphotos_109727868-stock-photo-delicious-hot-pizza-on-wooden.jpg\" })" | mongosh ${MONGO_URL}
+echo "db.pizzas.insertOne({ name: \"basil\", description: \"This is pizza\", price: 300, image: \"https://st4.depositphotos.com/13194036/39975/i/1600/depositphotos_399750630-stock-photo-delicious-italian-pizza-salami-vegetables.jpg\" })" | mongosh ${MONGO_URL}
+echo "db.pizzas.insertOne({ name: \"peperoni\", description: \"This is pizza\", price: 600, image: \"https://st4.depositphotos.com/11169808/22933/i/1600/depositphotos_229330324-stock-photo-tasty-pepperoni-pizza-cooking-ingredients.jpg\" })" | mongosh ${MONGO_URL}
+echo "db.pizzas.insertOne({ name: \"cheesy 7\", description: \"This is pizza\", price: 700, image: \"https://st4.depositphotos.com/11169808/22933/i/1600/depositphotos_229330324-stock-photo-tasty-pepperoni-pizza-cooking-ingredients.jpg\" })" | mongosh ${MONGO_URL}
