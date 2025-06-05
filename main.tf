@@ -98,7 +98,7 @@ resource "null_resource" "execute_script_on_bastion_instance" {
   connection {
     type        = "ssh"
     user        = "ubuntu"
-    private_key = file("${path.module}/modules/key_pair/id_rsa")
+    private_key = module.key_pair.private_key_pem
     host        = module.bastion_instance.bastion_public_ip
     timeout     = "1m"
   }
@@ -125,7 +125,7 @@ resource "null_resource" "script_to_add_menu_database" {
   connection {
     type        = "ssh"
     user        = "ubuntu"
-    private_key = file("${path.module}/modules/key_pair/id_rsa")
+    private_key = module.key_pair.private_key_pem
     host        = module.bastion_instance.bastion_public_ip
     timeout     = "1m"
   }

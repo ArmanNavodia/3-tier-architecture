@@ -13,13 +13,10 @@ output "internet_gateway_id_out" {
   value = module.Internet_Gateway.internet_gateway_out
 }
 
-# output "ec2_public_id_out" {
-#   value = module.EC2_instance.ec2_public_out[*]
-# }
-
-# output "ec2_private_id_out" {
-#   value = module.EC2_instance.ec2_private_out[*]
-# }
+output "private_key"{
+  value=module.key_pair.private_key_pem
+  sensitive = true
+}
 
 output "sg_public_alb_out" {
   value = module.Security_Group.public_alb_sg
@@ -50,6 +47,3 @@ output "public_route_association_id_out" {
 output "private_route_association_id_out" {
   value = module.route_table.private_routing_table_association_out
 }
-# output "global_ami_id_out" {
-#   value = module.AMI.AMI_id_out
-# }
