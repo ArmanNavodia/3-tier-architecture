@@ -29,7 +29,7 @@ jobs:
       run: terraform validate
 
     - name: Terraform Plan
-       env:
+      env:
         TF_VAR_atlas_public_key: dummy_public_key_123
         TF_VAR_atlas_private_key: dummy_private_key_456
       run: |
