@@ -13,8 +13,8 @@ output "internet_gateway_id_out" {
   value = module.Internet_Gateway.internet_gateway_out
 }
 
-output "private_key"{
-  value=module.key_pair.private_key_pem
+output "private_key" {
+  value     = module.key_pair.private_key_pem
   sensitive = true
 }
 

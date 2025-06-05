@@ -128,7 +128,7 @@ resource "null_resource" "script_to_add_menu_database" {
   provisioner "file" {
     #source      = data.template_file.addmenuTemplate.rendered
     content = templatefile("${path.module}/addMenu.sh",
-    {MONGO_URL=module.Database.output_connection_string_with_username_password})
+    { MONGO_URL = module.Database.output_connection_string_with_username_password })
     destination = "/home/ubuntu/addMenu.sh"
   }
   provisioner "remote-exec" {
