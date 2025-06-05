@@ -29,4 +29,13 @@ jobs:
       run: terraform validate
 
     - name: Terraform Plan
-      run: terraform plan
+      run: |
+        terraform plan -input=false \
+        -var="min_size_webrole=1" \
+        -var="max_size_webrole=1" \
+        -var="desired_capacity_webrole=1" \
+        -var="min_size_bgrole=1" \
+        -var="max_size_bgrole=1" \
+        -var="desired_capacity_bgrole=1" \
+        -var="frontend_inst_type=t2.micro" \
+        -var="backend_inst_type=t2.micro"
