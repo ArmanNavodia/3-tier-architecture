@@ -1,7 +1,7 @@
 # terraform.tfstate.backup
 # .terraform.lock.hcl
 # terraform.tfstate
-**/.terraform/*
+.terraform/
 terraform.tfstate.backup
 .terraform.lock.hcl
 terraform.tfstate

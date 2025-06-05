@@ -67,20 +67,6 @@ module "bastion_instance" {
   set_Security_Group_public = [module.Security_Group.public_instance_sg]
   public_subnet             = module.Subnet.public_subnets_out[0]
 }
-// EC2 instance module
-
-# module "EC2_instance" {
-#   source                     = "./modules/aws_instance"
-#   list_public_subnet         = module.Subnet.public_subnets_out
-#   list_private_subnet        = module.Subnet.private_subnets_out
-#   set_Security_Group_public  = [module.Security_Group.public_instance_sg]
-#   set_Security_Group_private = [module.Security_Group.private_instance_sg]
-#   key_pair_id                = module.key_pair.key_pair_id_out
-#   pvtalb_dns_name            = module.private_alb.load_balancer_out
-#   database_server            = module.Database.ec2_db_out
-#   db_instance_private_ip     = module.Database.db_instance_private_ip_out
-#   depends_on                 = [module.Database]
-# }
 
 // NAT Gateway module
 
@@ -130,15 +116,8 @@ resource "null_resource" "execute_script_on_bastion_instance" {
   }
 }
 
-# data "template_file" "addmenuTemplate" {
-#   template = file("${path.module}/addMenu.sh")
-#   vars={
-#     MONGO_URL=module.Database.output_connection_string_with_username_password
-#   }
-#   }
 
 resource "null_resource" "script_to_add_menu_database" {
-  # depends_on = [ null_resource.execute_script_on_server_instance ]
   depends_on = [module.bastion_instance, module.Database, null_resource.execute_script_on_bastion_instance]
   triggers = {
     instance_id = module.Database.output_connection_string_with_username_password

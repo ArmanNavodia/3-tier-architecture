@@ -8,11 +8,6 @@ variable "vpc_id"{
     description="vpc id for alb"
 }
 
-# variable "ec2_instances"{
-#     type=list(string)
-#     description="list of the ec2 instances need to be in target group"
-# }
-
 variable "alb_sg" {
     description = "specify the required security group for public alb"
   type=set(string)

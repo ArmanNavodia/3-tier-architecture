@@ -27,13 +27,6 @@ resource "aws_lb_target_group" "alb-tg" {
   }
 }
 
-# Attach EC2 instances to the target group
-# resource "aws_lb_target_group_attachment" "alb-attachment-tg" {
-#   count            = length(var.ec2_instances)                # Number of EC2 instances to attach to the target group
-#   target_group_arn = aws_lb_target_group.alb-tg.arn           # ARN of the target group
-#   target_id        = var.ec2_instances[count.index]           # ID of the EC2 instance to attach
-# }
-
 resource "aws_autoscaling_attachment" "alb-asg-attachement" {
   autoscaling_group_name = var.asg-name
   lb_target_group_arn = aws_lb_target_group.alb-tg.arn
