@@ -91,9 +91,6 @@ module "route_table" {
 resource "null_resource" "execute_script_on_bastion_instance" {
   depends_on = [module.bastion_instance]
 
-  triggers = {
-    instance_id = module.bastion_instance.bastion_public_ip
-  }
 
   connection {
     type        = "ssh"
@@ -119,9 +116,7 @@ resource "null_resource" "execute_script_on_bastion_instance" {
 
 resource "null_resource" "script_to_add_menu_database" {
   depends_on = [module.bastion_instance, module.Database, null_resource.execute_script_on_bastion_instance]
-  triggers = {
-    instance_id = module.Database.output_connection_string_with_username_password
-  }
+
   connection {
     type        = "ssh"
     user        = "ubuntu"
@@ -181,7 +176,6 @@ module "autoscaling_group_backend" {
   boolean_public_ip_to_instance = false
   set_Security_Group_instance   = [module.Security_Group.private_instance_sg]
   user_data_script = base64encode(templatefile("${path.module}/installServer.sh", {
-    #    dbinstance_ip=module.Database.db_instance_private_ip_out
     MONGO_URL = module.Database.output_connection_string_with_username_password
   }))
   depends_on = [module.Database]
