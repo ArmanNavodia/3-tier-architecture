@@ -32,8 +32,8 @@ jobs:
       env:
         TF_VAR_atlas_public_key: dummy_public_key_123
         TF_VAR_atlas_private_key: dummy_private_key_456
-        AWS_ACCESS_KEY_ID: mock_access_key_id_123
-        AWS_SECRET_ACCESS_KEY: mock_secret_access_key_abc
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       run: |
         terraform plan -input=false \
         -var="min_size_webrole=1" \
